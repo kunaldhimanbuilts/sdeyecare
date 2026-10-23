@@ -1,0 +1,174 @@
+body {
+  font-family: sans-serif;
+  background: linear-gradient(to right, #e0f2fe, #f0fdf4);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input {
+  @apply border p-2 rounded w-full;
+}
+
+.print-area {
+  display: none;
+}
+.special-ocular{
+    break-inside: avoid;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+}
+/* Show only while printing */
+@media print {
+  .print-area {
+    display: block !important;
+  }
+}
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2mm;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+
+/* Tables only inside print page */
+
+.a4-page table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.a4-page th,
+.a4-page td {
+  border: 1px solid #cfd6df;
+  padding: 5px;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+.a4-page th {
+  background: #f8fafc;
+  color: #213c8f;
+  font-weight: 700;
+}
+
+/* Slit Lamp / Fundus */
+
+.slit-table,
+.fundus-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.slit-table td,
+.fundus-table td {
+  border: 1px solid #d5dce5;
+  padding: 4px;
+  font-size: 10px;
+}
+
+/* Utility */
+
+.print-title {
+  background: #213c8f;
+  color: white;
+  font-weight: bold;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.print-box {
+  border: 1px solid #cfd6df;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.page-break {
+  page-break-inside: avoid;
+}
+
+/* ===========================
+   PRINT
+=========================== */
+
+@page {
+  size: A4 portrait;
+  margin: 1mm;
+}
+
+@media print {
+
+  html,
+  body {
+    width: 210mm;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    color: black;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: white;
+  }
+
+  .a4-page {
+    width: 210mm;
+    min-height: 285mm;
+    margin: 0 auto;
+    padding: 0;
+    background: white;
+    overflow: hidden;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .a4-page table {
+    page-break-inside: avoid;
+  }
+
+  tr,
+  td,
+  th {
+    page-break-inside: avoid;
+  }
+
+  img,
+  svg {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    box-shadow: none !important;
+  }
+}
